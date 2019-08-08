@@ -31,10 +31,6 @@ class IndexController extends Zend_Controller_Action
         
 		if($this->getRequest()->isPost())		
 		{
-			if(date('Y-m-d')>='2020-01-15'){
- 				$this->view->msg = 'System Expired';
- 				return false;
-			}
 			$formdata=$this->getRequest()->getPost();
 			if($form->isValid($formdata))
 			{
@@ -109,7 +105,7 @@ class IndexController extends Zend_Controller_Action
 		$this->view->rslang = $session_lang->lang_id;
     }
     protected function sortMenu($menus){
-    	$menus_order = Array ( 'home','project','group','loan','incexp','property','invest','other','report','rsvacl','setting');
+    	$menus_order = Array ( 'home','group','other','report','rsvacl','setting');
     	$temp_menu = Array();
     	$menus=array_unique($menus);
     	foreach ($menus_order as $i => $val){
