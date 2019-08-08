@@ -47,6 +47,9 @@ dojo.require("dijit.form.DateTextBox");
 					</div>
 					<div class="form-group">
 						<div class="col-md-2 col-sm-2 col-xs-12">
+							<?php echo $frm->getElement('standard');?>
+						</div> 
+						<div class="col-md-2 col-sm-2 col-xs-12">
 							<?php echo $frm->getElement('made_by');?>
 						</div> 
 						<div class="col-md-2 col-sm-2 col-xs-12">
@@ -61,29 +64,33 @@ dojo.require("dijit.form.DateTextBox");
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<input id="village" >
 						</div>
+					</div>
+					<div class="form-group">
 						<div class="col-md-2 col-sm-2 col-xs-12">
 						<?php echo $frm->getElement('zone_id');?>
 						</div>
-					</div>
-					<div class="form-group">
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<?php echo $frm->getElement('street_id');?>
 						</div>
 						<div class="col-md-2 col-sm-2 col-xs-12">
-							<?php echo $frm->getElement('floor');?>
-						</div> 
-						<div class="col-md-2 col-sm-2 col-xs-12">
 							<?php echo $frm->getElement('line');?>
 						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<?php echo $frm->getElement('floor');?>
+						</div> 
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<?php echo $frm->getElement('side');?>
 						</div>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<?php echo $frm->getElement('start_direction');?>
 						</div>
-						
+					</div>
+					<div class="form-group">
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<?php echo $frm->getElement('verification');?>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							
 							<button iconclass="dijitIconSearch" dojoType="dijit.form.Button" showLabel="true" type="submit"><?php echo $tr->translate("SEARCH");?></button>
 						</div>
 					</div>
@@ -404,6 +411,7 @@ $(function(){
 			}else if(key=="map"){
 				vill = dijit.byId('map'+row).get('value');
 				if(vill==""){
+					alert("<?php echo $tr->translate("NO_MAP");?>");
 					return false;
 				}
 				url = vill;

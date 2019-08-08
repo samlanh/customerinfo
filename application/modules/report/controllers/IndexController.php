@@ -33,6 +33,7 @@ class Report_indexController extends Zend_Controller_Action {
   				'start_direction'=>0,
   				'verification'=>0,
   				'made_by'=>0,
+  				'standard'=>0,
   				
 			'start_date'=> date('Y-m-d'),
 			'end_date'=>date('Y-m-d'));

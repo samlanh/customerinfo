@@ -85,6 +85,9 @@ class Report_Model_DbTable_DbReport extends Zend_Db_Table_Abstract
 				$where.=" AND c.village_id= ".$search['village'];
 			}
 			
+			if(!empty($search['standard'])){
+				$where.=" AND c.standard= ".$search['standard'];
+			}
 			if(!empty($search['made_by'])){
 				$where.=" AND c.made_by= ".$search['made_by'];
 			}

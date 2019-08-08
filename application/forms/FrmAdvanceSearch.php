@@ -205,7 +205,6 @@ class Application_Form_FrmAdvanceSearch extends Zend_Dojo_Form
 		
 		$_verification=  new Zend_Dojo_Form_Element_FilteringSelect('verification');
 		$_verification->setAttribs(array('dojoType'=>$this->filter,
-				'style'=>"width:50%;",
 				'class'=>'fullside','queryExpr'=>'*${0}*','autoComplete'=>'false',));
 		$_line_opt = array(
 				0=>$this->tr->translate("PLEASE_SELECT_VERIFICATION"));
