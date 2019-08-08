@@ -1,0 +1,11 @@
+<?php 
+$tr = Application_Form_FrmLanguages::getCurrentlanguage();
+?>
+<title><?php echo $tr->translate("USER_TYPE")?></title>
+<div class="card pb-10 pt-10 pl-10 pr-10">
+	<div class="card-content collapse show">
+		<div class="card-box">
+			<?php echo $this->list;?>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,239 @@
+<?php
+	$tr = Application_Form_FrmLanguages::getCurrentlanguage();
+	echo $this->headTitle($tr->translate('CUSTOMER_PROFILE'));
+	$rs = $this->row;
+	$base_url = Application_Form_FrmMessage::getUrl("/");
+	$key = new Application_Model_DbTable_DbKeycode();
+	$data =$key->getKeyCodeMiniInv(TRUE);
+?>	
+<style>
+.border-cover {
+  border: 1px solid #ccc;
+  padding: 0px 4px;
+  background: #E5F2F5;
+}
+.menureport ul li {
+    display: inline-block;
+    float: none;
+}
+</style>
+<style>
+tr.head td h2 {
+    font-size: 16px !important;
+    line-height: 27px !important;
+}
+.b{ font-weight: bold; }
+
+p.padding-left {
+    line-height: 24px !important;
+}
+
+table#exportExcel tr td {
+    font-size: 14px !important;
+}
+label.title {
+    font-size: 14px !important;
+    min-width: 100px !important;
+}
+label.value {
+    font-size: 14px !important;
+    min-width: 100px !important;
+}
+</style>
+	<div class="card-box">
+       	<div class="col-sm-12 border-botom">
+	   		<div class="col-sm-8 pd-0">
+	    		<h4 class="m-b-0"><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<?php echo $tr->translate('CUSTOMER_PROFILE');?></h4>
+    		</div>
+    		<div class="col-sm-4 text-right">
+    			<a href="javascript:void(0);" class="print-card btn btn-primary btn-xs" onclick="PrintDiv('divPrint')"><i class="fa fa-print" aria-hidden="true"></i> <?php echo $tr->translate("PRINT");?></a>
+    		</div>
+    	</div>
+    </div>
+	<div style="margin: 0 auto; min-height: 26cm; padding: 0.5cm 0.5cm 0cm 0.5cm;">
+			<div id="divPrint">
+				<style>
+				.pagebreak {
+				    page-break-inside: avoid;
+				    page-break-after: always;
+				}
+				table.data-value tbody tr td {
+				    line-height: 22px;
+				    padding: 1px 0;
+				    border-bottom: solid 1px #000;
+				}
+				table.data-value tbody tr td span.label-title {
+				    line-height: 22px;
+				    display: inline-block;
+				    min-width: 75px;
+				}
+				table.data-value tbody tr.head-title td
+				 {
+				    text-align: center;
+				    font-weight: 600;
+				    border: solid 1px #000;
+				    border-top: none;
+				    border-left: none;
+				}
+				table.data-value tbody tr.row-value td{
+					border: solid 1px #000;
+				    border-left: none;
+				}
+				table.data-value tbody tr td.borderbottom-none {
+					 border-bottom: none;
+				}
+				table.data-value tbody tr td.borderright-none {
+					 border-right: none;
+				}
+				td iframe {
+				    width: 100% !important;
+				    padding: 1px;
+				}
+			</style>
+				<div class="pagebreak">
+				<table width="100%" border="0" style=" width:100%; :12px;font-family:Tahoma,'Khmer OS Battambang';"> 
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+						   <table width="100%" style="font-family: Times New Roman;">
+								<tr>
+									<td colspan="3" align="center" style="font-size: 20px;">CUSTOMER PROFILE</td>
+								</tr>
+						   </table>
+					   </td>
+					</tr>
+					<style>
+						.defaultheight{height: 21px;}
+						.border{border:1px solid #000;border-left: none;border-right: none;}
+						tr.line td{ border-bottom: 2px solid #000;padding-top: 5px; }
+					</style>
+					<tr>
+						<td>
+							<table width="100%" border="1"  style="font-size:12px; border-collapse:collapse;border: 1px solid #000;font-family: Times New Roman , Khmer OS Battambang; white-space: nowrap;">
+								<tr style="height: 24px; background: #0077c5;">
+									<td colspan="3" style="font-size: 13px;font-weight: bold;color: #fff;">&nbsp; <?php echo $tr->translate("CUSTOMER_INFO");?></td>
+								</tr>
+								<tr>
+									<td width="50%">&nbsp; <?php echo $tr->translate("KH_NAME");?> : <?php echo $rs['name_kh']?></td>
+									<td width="36%">&nbsp; <?php echo $tr->translate("CLIENT_NUM");?># : <?php echo $rs['client_number']?></td>
+									<td width="14%" rowspan="5" style="border:2px solid #000;">
+									<?php 
+									$images = $this->baseUrl().'/images/no-photo.png';
+									if (!empty($this->row['photo_name'])){
+										if (file_exists(PUBLIC_PATH."/images/photo/".$this->row['photo_name'])){
+											$images = $this->baseUrl()."/images/photo/".$this->row['photo_name'];
+										}
+									}
+									?>
+									<img  src="<?php echo $images;?>" style="width: 100%;height: 135px;">
+									</td>
+								</tr>
+								<tr class="defaultheight">
+									<td >&nbsp; <?php echo $tr->translate("EN_NAME");?> : <?php echo $rs['name_en']?></td>
+									<td >&nbsp; <?php echo $tr->translate("SEX");?> : <?php echo $rs['sex']?></td>
+								</tr>
+								<tr class="defaultheight">
+									<td>&nbsp; <?php echo $tr->translate("CATEGORY");?> : <?php echo $rs['category'];?></td>
+									<td>&nbsp; <?php echo $tr->translate("STANDARD");?> : <?php echo $rs['standard'];?></td>
+								</tr>
+								<tr class="defaultheight">
+									<td>&nbsp; <?php echo $tr->translate("SERVICE");?> : <?php echo $rs['service'];?></td>
+									<td>&nbsp; <?php echo $tr->translate("PRODUCT");?> : <?php echo $rs['product'];?></td>
+								</tr>
+								<tr class="defaultheight">
+									<td>&nbsp; <?php echo $tr->translate("MADE_BY");?> : <?php echo $rs['madeby'];?></td>
+									<td>&nbsp; <?php echo $tr->translate("CONTACT");?> : <?php echo $rs['contact'];?></td>
+								</tr>
+								<tr class="defaultheight">
+									<td colspan="3" style="font-size: 11px;">&nbsp; <?php echo $tr->translate("LOCATION");?> : 
+									<?php 
+										echo empty($rs['zone'])?"":$tr->translate("ZONE")." ".$rs['zone'];
+										echo empty($rs['street'])?"":" ".$tr->translate("STREET")." ".$rs['street'];
+										echo empty($rs['village_name'])?"":" ".$tr->translate("VILLAGE")." ".$rs['village_name'];
+										echo empty($rs['commnune'])?"":" ".$tr->translate("COMMUNE")." ".$rs['commnune'];
+										echo empty($rs['district'])?"":" ".$tr->translate("DISTRICT")." ".$rs['district'];
+										echo empty($rs['province'])?"":" ".$this->row['province'];
+									?></td>
+								</tr>
+								<tr class="defaultheight">
+									<td>&nbsp; <?php echo $tr->translate("SIDE");?> : <?php echo $rs['side'];?></td>
+									<td colspan="2">&nbsp; <?php echo $tr->translate("START_DIRECTION");?> : <?php echo $rs['start_direction'];?></td>
+								</tr>
+								<tr class="defaultheight">
+									<td>&nbsp; <?php echo $tr->translate("VERIFICATION");?> : <?php echo $rs['verification'];?></td>
+									<td colspan="2">&nbsp; <?php echo $tr->translate("OTHER");?> : <?php echo $rs['other'];?></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<?php if (!empty($rs['map'])){?>
+					<tr>
+						<td>
+							<table width="100%" border="1"  style="margin-top:20px; font-size:12px; border-collapse:collapse;border: 1px solid #000;font-family: Times New Roman , Khmer OS Battambang; white-space: nowrap;">
+								<tr style="height: 24px; background: #0077c5;">
+									<td colspan="2" style="font-size: 13px;font-weight: bold;color: #fff;">&nbsp; <?php echo $tr->translate("MAP");?></td>
+								</tr>
+								<tr class="defaultheight">
+									<td>
+										<div class="demo-container"></div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<?php }?>
+					<tr>
+						<td>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						</td>
+					</tr>
+				</table>
+			</div>
+	   		</div>
+		 </div>	
+<script>
+function PrintDiv(keydiv) {
+	loadingBlock();
+  	 var contents = document.getElementById(keydiv).innerHTML;
+ 	  var frame1 = document.createElement('iframe');
+    frame1.name = "frame1";
+    frame1.style.position = "absolute";
+    frame1.style.top = "-1000000px";
+    document.body.appendChild(frame1);
+    var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument; frameDoc.document.open();
+    frameDoc.document.write('<html><head><title>Employee ID</title>');
+    frameDoc.document.write('</head><body>');
+    frameDoc.document.write(contents);
+    frameDoc.document.write('</body></html>');
+    frameDoc.document.close();
+    setTimeout(function () {
+        window.frames["frame1"].focus();
+        window.frames["frame1"].print();
+        document.body.removeChild(frame1);
+        HideloadingBlock();
+    }, 2000);
+   return false;
+}
+$( document ).ready(function() {
+	  // Handler for .ready() called.
+	  <?php if (!empty($rs['map'])){?>
+	GoogleMapsURLToEmbedURL("<?php echo $rs['map'];?>")
+	<?php }?>
+	});
+function GoogleMapsURLToEmbedURL(GoogleMapsURL)
+{
+    var coords = /\@([0-9\.\,\-a-zA-Z]*)/.exec(GoogleMapsURL);
+    if(coords!=null)
+    {
+        var coordsArray = coords[1].split(',');
+        embeet= "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20000!2d"+coordsArray[1]+"!3d"+coordsArray[0]+"!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1486486434098";
+		fram = '<iframe src="'+embeet+'" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>'
+         $( "div.demo-container" ).html(fram);
+    }
+}
+</script>
