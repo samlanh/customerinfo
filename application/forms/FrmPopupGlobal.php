@@ -235,7 +235,7 @@ class Application_Form_FrmPopupGlobal extends Zend_Dojo_Form
 		Application_Model_Decorator::removeAllDecorator($frm);
 		$string='
 		<div class="dijitHidden">
-			<div data-dojo-type="dijit.Dialog"  id="frm_datapop_service" data-dojo-props="title:'."'".$tr->translate("ADD_SERVICE")."'".'">
+			<div data-dojo-type="dijit.Dialog"  id="frm_datapop_service" data-dojo-props="title:'."'".$tr->translate("CREATE_SERVICE")."'".'">
 				<form id="form_popup_service" dojoType="dijit.form.Form" method="post" enctype="application/x-www-form-urlencoded">
 					<div class="card-box">
 						<div class="col-md-12 col-sm-12 col-xs-12">
@@ -274,7 +274,7 @@ class Application_Form_FrmPopupGlobal extends Zend_Dojo_Form
 		Application_Model_Decorator::removeAllDecorator($frm);
 		$string='
 			<div class="dijitHidden">
-				<div data-dojo-type="dijit.Dialog"  id="frm_datapop_product" data-dojo-props="title:'."'".$tr->translate("ADD_PRODUCT")."'".'">
+				<div data-dojo-type="dijit.Dialog"  id="frm_datapop_product" data-dojo-props="title:'."'".$tr->translate("CREATE_PRODUCT")."'".'">
 					<form id="form_popup_product" dojoType="dijit.form.Form" method="post" enctype="application/x-www-form-urlencoded">
 						<div class="card-box">
 							<div class="col-md-12 col-sm-12 col-xs-12">
@@ -313,7 +313,7 @@ class Application_Form_FrmPopupGlobal extends Zend_Dojo_Form
 		Application_Model_Decorator::removeAllDecorator($frm);
 		$string = '
 		<div class="dijitHidden">
-			<div data-dojo-type="dijit.Dialog"  id="frm_datapop_standard" data-dojo-props="title:'."'".$tr->translate("ADD_STANDARD")."'".'">
+			<div data-dojo-type="dijit.Dialog"  id="frm_datapop_standard" data-dojo-props="title:'."'".$tr->translate("CREATE_STANDARD")."'".'">
 				<form id="form_popup_standard" dojoType="dijit.form.Form" method="post" enctype="application/x-www-form-urlencoded">
 					<div class="card-box">
 						<div class="col-md-12 col-sm-12 col-xs-12">
@@ -354,7 +354,7 @@ class Application_Form_FrmPopupGlobal extends Zend_Dojo_Form
 		
 		$string = '
 		<div class="dijitHidden">
-			<div data-dojo-type="dijit.Dialog"  id="frm_datapop_madeby" data-dojo-props="title:'."'".$tr->translate("ADD_MADE_BY")."'".'">
+			<div data-dojo-type="dijit.Dialog"  id="frm_datapop_madeby" data-dojo-props="title:'."'".$tr->translate("CREATE_MADE_BY")."'".'">
 				<form id="form_popup_madeby" dojoType="dijit.form.Form" method="post" enctype="application/x-www-form-urlencoded">
 					<div class="card-box">
 						<div class="col-md-12 col-sm-12 col-xs-12">

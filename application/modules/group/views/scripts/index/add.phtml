@@ -78,6 +78,13 @@
 			                   </div>
 			                </div>
 			                <div class="form-group">
+			                   <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name"><?php echo $tr->translate("ORDERING");?>  :
+			                   </label>
+			                   <div class="col-md-7 col-sm-7 col-xs-12">
+			                    	<?php  echo $frm->getElement('ordering');?>
+			                   </div>
+			                </div>
+			                <div class="form-group">
 			                   <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name"><?php echo $tr->translate("KH_NAME");?>  :
 			                   </label>
 			                   <div class="col-md-7 col-sm-7 col-xs-12">
@@ -127,13 +134,7 @@
 			                    	<?php  echo $frm->getElement('made_by');?>
 			                   </div>
 			                </div>
-			                <div class="form-group">
-			                   <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name"><?php echo $tr->translate("NOTE");?> :
-			                   </label>
-			                   <div class="col-md-7 col-sm-7 col-xs-12">
-			                    	<?php  echo $frm->getElement('noted');?>
-			                   </div>
-			                </div>
+			                
 			           	</div>
 			        	<div class="col-md-4 col-sm-4 col-xs-12">
 							<div class="form-group">
@@ -265,10 +266,10 @@
 			                   </div>
 			                </div>
 			                <div class="form-group">
-			                   <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name"><?php echo $tr->translate("ORDERING");?>  :
+			                   <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name"><?php echo $tr->translate("NOTE");?> :
 			                   </label>
 			                   <div class="col-md-7 col-sm-7 col-xs-12">
-			                    	<?php  echo $frm->getElement('ordering');?>
+			                    	<?php  echo $frm->getElement('noted');?>
 			                   </div>
 			                </div>
 			            </div>
@@ -305,42 +306,7 @@
 		</form>
 	</div>
 </div>
-<!-- 
-<div class="dijitHidden">
-	<div data-dojo-type="dijit.Dialog"  id="frm_district" data-dojo-props="title:'<?php echo $tr->translate("ADD_NEW_DATA")?>'">
-		<form id="form_popup" >
-			<div class="card-box">
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<div class="form-group">
-	                   <label class="control-label col-md-12 col-sm-12 col-xs-12 title-blog bold" for="first-name">
-	                   	<i class="fa fa-hand-o-right" aria-hidden="true"></i> 
-	                   	<span id="title_form"></span> 
-	                   </label>
-	                </div>
-					<div class="form-group">
-					   <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name"><?php echo $tr->translate('TITLE');?> :
-					   </label>
-					   <div class="col-md-7 col-sm-7 col-xs-12">
-					   </div>
-					</div>
-					<div class="form-group">
-					   <label class="control-label col-md-5 col-sm-5 col-xs-12" for="first-name"><?php echo $tr->translate('NOTE');?> :
-					   </label>
-					   <div class="col-md-7 col-sm-7 col-xs-12">
-					   </div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-12 border-top mt-20 ptb-10 text-center">
-							<input type="button"  label="<?php echo $tr->translate("SAVE");?>" dojoType="dijit.form.Button" 
-				 	iconClass="dijitEditorIcon dijitEditorIconSave" onclick="addBranch();"/>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
--->
+
 <?php 
 	echo $this->frm_popup_district;
 	echo $this->frm_popup_village;
@@ -623,9 +589,10 @@ function addService(){
 				addDataToSelectbox(dijit.byId('service_id'),service_store , Itemmake, data);
 				dijit.byId('form_popup_service').reset();
 				dijit.byId("frm_datapop_service").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}
@@ -634,6 +601,7 @@ var product_store  = getDataStorefromJSON('id','name', <?php print_r(Zend_Json::
 function addProduct(){
 	var url_ajax = '<?php echo $this->url(array('module'=>'group','controller'=>'product','action'=>'addajax')); ?>';
 	if(dijit.byId('form_popup_product').validate()){
+		loadingBlock();
 		dojo.xhrPost({
 			url: url_ajax,
 			form: dojo.byId("form_popup_product"),
@@ -646,9 +614,10 @@ function addProduct(){
 				addDataToSelectbox(dijit.byId('product_id'),product_store , Itemmake, data);
 				dijit.byId('form_popup_product').reset();
 				dijit.byId("frm_datapop_product").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}
@@ -657,6 +626,7 @@ var standard_store  = getDataStorefromJSON('id','name', <?php print_r(Zend_Json:
 function addStandard(){
 	var url_ajax = '<?php echo $this->url(array('module'=>'group','controller'=>'standard','action'=>'addajax')); ?>';
 	if(dijit.byId('form_popup_standard').validate()){
+		loadingBlock();
 		dojo.xhrPost({
 			url: url_ajax,
 			form: dojo.byId("form_popup_standard"),
@@ -669,9 +639,10 @@ function addStandard(){
 				addDataToSelectbox(dijit.byId('standard'),standard_store , Itemmake, data);
 				dijit.byId('form_popup_standard').reset();
 				dijit.byId("frm_datapop_standard").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}
@@ -680,6 +651,7 @@ var madeby_store  = getDataStorefromJSON('id','name', <?php print_r(Zend_Json::e
 function addMadeBy(){
 	var url_ajax = '<?php echo $this->url(array('module'=>'group','controller'=>'madeby','action'=>'addajax')); ?>';
 	if(dijit.byId('form_popup_madeby').validate()){
+		loadingBlock();
 		dojo.xhrPost({
 			url: url_ajax,
 			form: dojo.byId("form_popup_madeby"),
@@ -692,9 +664,10 @@ function addMadeBy(){
 				addDataToSelectbox(dijit.byId('standard'),madeby_store , Itemmake, data);
 				dijit.byId('form_popup_madeby').reset();
 				dijit.byId("frm_datapop_madeby").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}
@@ -703,6 +676,7 @@ var street_store  = getDataStorefromJSON('id','name', <?php print_r(Zend_Json::e
 function addStreetd(){
 	var url_ajax = '<?php echo $this->url(array('module'=>'other','controller'=>'street','action'=>'addajax')); ?>';
 	if(dijit.byId('form_popup_street').validate()){
+		loadingBlock();
 		dojo.xhrPost({
 			url: url_ajax,
 			form: dojo.byId("form_popup_street"),
@@ -715,9 +689,10 @@ function addStreetd(){
 				addDataToSelectbox(dijit.byId('street_id'),street_store , Itemmake, data);
 				dijit.byId('form_popup_street').reset();
 				dijit.byId("frm_datapop_street").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}
@@ -726,6 +701,7 @@ var zone_store  = getDataStorefromJSON('id','name', <?php print_r(Zend_Json::enc
 function addZone(){
 	var url_ajax = '<?php echo $this->url(array('module'=>'other','controller'=>'zone','action'=>'addajax')); ?>';
 	if(dijit.byId('form_popup_zone').validate()){
+		loadingBlock();
 		dojo.xhrPost({
 			url: url_ajax,
 			form: dojo.byId("form_popup_zone"),
@@ -738,9 +714,10 @@ function addZone(){
 				addDataToSelectbox(dijit.byId('zone_id'),zone_store , Itemmake, data);
 				dijit.byId('form_popup_zone').reset();
 				dijit.byId("frm_datapop_zone").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}
@@ -773,6 +750,7 @@ function popupFormData(index){
 var url_branch = '<?php echo $this->url(array('module'=>'other','controller'=>'index','action'=>'addnewdata')); ?>';
 function addData(){
 	if(dijit.byId('form_popup').validate()){
+		loadingBlock();
 		dojo.xhrPost({
 			url:url_branch,
 			form: dojo.byId("form_popup"),
@@ -798,9 +776,10 @@ function addData(){
 				}	
 				dijit.byId('form_popup').reset();
 				dijit.byId("frm_datapop").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}
@@ -814,6 +793,7 @@ function popupCategory(){
 function addCategory(){
 	var url_ajax = '<?php echo $this->url(array('module'=>'group','controller'=>'category','action'=>'addajax')); ?>';
 	if(dijit.byId('form_popup_category').validate()){
+		loadingBlock();
 		dojo.xhrPost({
 			url: url_ajax,
 			form: dojo.byId("form_popup_category"),
@@ -824,9 +804,10 @@ function addCategory(){
 			    dijit.byId('category').set('value', data.id);
 				dijit.byId('form_popup_category').reset();
 				dijit.byId("frm_datapop_category").hide();
+				HideloadingBlock();
 			},
 			error: function(err) {
-				alert(err);
+				HideloadingBlock();
 			}
 		});
 	}

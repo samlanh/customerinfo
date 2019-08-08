@@ -90,7 +90,7 @@ Class Group_Form_FrmCustomer extends Zend_Dojo_Form {
 		$_sex->setMultiOptions($_sex_opt);
 		
 		$_contact= new Zend_Dojo_Form_Element_TextBox('contact');
-		$_contact->setAttribs(array('dojoType'=>$this->text,'required'=>'true','class'=>'fullside',));
+		$_contact->setAttribs(array('dojoType'=>$this->tvalidate,'required'=>'true','class'=>'fullside',));
 		
 		$_service_id=  new Zend_Dojo_Form_Element_FilteringSelect('service_id');
 		$_service_id->setAttribs(array('dojoType'=>$this->filter,'class'=>'fullside','queryExpr'=>'*${0}*','autoComplete'=>'false',));
