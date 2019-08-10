@@ -45,7 +45,7 @@ Class Group_Form_FrmCustomer extends Zend_Dojo_Form {
 		$_client_number= new Zend_Dojo_Form_Element_TextBox('client_number');
 		$_client_number->setAttribs(
 				array('dojoType'=>$this->tvalidate,
-						'readOnly'=>'true',
+						//'readOnly'=>'true',
 						'required'=>'true',
 						'class'=>'fullside',
 						'style'=>'color:red; font-weight:bold;',

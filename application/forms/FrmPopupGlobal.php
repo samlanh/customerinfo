@@ -93,8 +93,8 @@ class Application_Form_FrmPopupGlobal extends Zend_Dojo_Form
 						<tr>
 							<td>'. $tr->translate("DISPLAY_BY").'</td>
 							<td>'.'<select name="display" id="display" dojoType="dijit.form.FilteringSelect" class="fullside">
-									    <option value="1" label="áž�áŸ’áž˜áŸ‚ážš">áž�áŸ’áž˜áŸ‚ážš</option>
-									    <option value="2" label="English">English</option>
+									    <option value="1" label="'.$tr->translate("KHMER").'">'.$tr->translate("KHMER").'</option>
+									    <option value="2" label="'.$tr->translate("ENGLISH").'">'.$tr->translate("ENGLISH").'</option>
 									</select>'.'</td>
 						</tr>
 						<tr>

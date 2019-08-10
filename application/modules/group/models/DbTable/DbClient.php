@@ -13,8 +13,9 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 				$oldClient_Code = $this->getClientById($_data['id']);
 				$client_code = $oldClient_Code['client_number'];
 			}else{
-				$db = new Application_Model_DbTable_DbGlobal();
-				$client_code = $db->getNewClientIdByBranch();
+// 				$db = new Application_Model_DbTable_DbGlobal();
+// 				$client_code = $db->getNewClientIdByBranch();
+				$client_code = empty($_data['client_number'])?"":$_data['client_number'];
 			}
 			
 			$record = $this->recordhistory($_data);
