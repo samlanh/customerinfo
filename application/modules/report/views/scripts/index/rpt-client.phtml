@@ -190,7 +190,7 @@ dojo.require("dijit.form.DateTextBox");
 		                    <td rowspan="2">&nbsp;<span><?php echo $tr->translate("NUM");?></span>&nbsp;</td>
 		                    <td colspan="4">&nbsp;<span><?php echo $tr->translate("CUSTOMER_INFO");?></span>&nbsp;</td>
 		                    <td colspan="5">&nbsp;<span><?php echo $tr->translate("OTHER_INFO");?></span>&nbsp;</td>
-		                    <td colspan="13">&nbsp;<span><?php echo $tr->translate("LOCATION_INFO");?></span>&nbsp;</td>
+		                    <td colspan="15">&nbsp;<span><?php echo $tr->translate("LOCATION_INFO");?></span>&nbsp;</td>
 		                    <td rowspan="2">&nbsp;<span><?php echo $tr->translate("BY_USER");?></span>&nbsp;</td>
 		                </tr>
 		                <tr bgcolor="#c1d0f3" class="style" align="center" >
@@ -216,6 +216,10 @@ dojo.require("dijit.form.DateTextBox");
 		                    <td><?php echo $tr->translate("PROVINCE");?></td>
 		                    <td><?php echo $tr->translate("SIDE");?></td>
 		                    <td><?php echo $tr->translate("START_DIRECTION");?></td>
+		                    
+		                    <td>&nbsp;<span><?php echo $tr->translate("MAP");?></span>&nbsp;</td>
+		                    <td>&nbsp;<span><?php echo $tr->translate("PHOTO");?></span>&nbsp;</td>
+		                    
 		                    <td><?php echo $tr->translate("VERIFICATION");?></td>
 		                    <td><?php echo $tr->translate("OTHER");?></td>
 		                </tr>
@@ -254,6 +258,27 @@ dojo.require("dijit.form.DateTextBox");
 		              			<td class="nowrap"><?php echo $rs['province']?></td>
 		              			<td class="nowrap"><?php echo $rs['side']?></td>
 		              			<td class="nowrap"><?php echo $rs['start_direction']?></td>
+		              			
+		              			<td>
+		              			<?php if (!empty($rs['map'])){?>
+		              			<a style="color: inherit; text-decoration: none;" href="<?php echo $rs['map'];?>" target="_blank" >
+		              			<img src="<?php echo $this->baseUrl()."/images/maps-and-flags.png"; ?>" style=" padding: 3px; width: 40px;"/>
+		              			<?php }?>
+		              			
+		              			<?php if (!empty($rs['map'])){?>
+		              			</a>
+		              			<?php }?>
+		              			</td>
+		              			<td>
+		              			<?php if (!empty($rs['photo_name'])){
+		              				if (file_exists(PUBLIC_PATH."/images/photo/".$rs['photo_name'])){
+		              					$images = $this->baseUrl()."/images/photo/".$rs['photo_name'];
+		              				?>
+		              				<a style="color: inherit; text-decoration: none;" href="<?php echo $images;?>" target="_blank" >
+		              				<img src="<?php echo $images; ?>" style=" padding: 1px; width: 50px;"/>
+		              				</a>
+		              			<?php }}?>
+		              			</td>
 		              			<td class="nowrap"><?php echo $rs['verification']?></td>
 		              			<td class="nowrap"><?php echo $rs['other']?>
 		              				<input dojoType="dijit.form.ValidationTextBox" required="true" id="map<?php echo $rs['id'];?>" name="map<?php echo $rs['id'];?>" value="<?php echo $rs['map'];?>" type="hidden" class="fullside">
