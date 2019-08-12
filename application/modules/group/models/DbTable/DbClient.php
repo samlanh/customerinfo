@@ -9,15 +9,15 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
     }
 	public function addClient($_data){
 		try{
-			if(!empty($_data['id'])){
-				$oldClient_Code = $this->getClientById($_data['id']);
-				$client_code = $oldClient_Code['client_number'];
-			}else{
-// 				$db = new Application_Model_DbTable_DbGlobal();
-// 				$client_code = $db->getNewClientIdByBranch();
-				$client_code = empty($_data['client_number'])?"":$_data['client_number'];
-			}
-			
+// 			if(!empty($_data['id'])){
+// 				$oldClient_Code = $this->getClientById($_data['id']);
+// 				$client_code = $oldClient_Code['client_number'];
+// 			}else{
+// // 				$db = new Application_Model_DbTable_DbGlobal();
+// // 				$client_code = $db->getNewClientIdByBranch();
+// 				$client_code = empty($_data['client_number'])?"":$_data['client_number'];
+// 			}
+			$client_code = empty($_data['client_number'])?"":$_data['client_number'];
 			$record = $this->recordhistory($_data);
 			$activityold = $record['activityold'];
 			$after_edit_info = $record['after_edit_info'];
@@ -275,10 +275,10 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 				$s_where = array();
 				$s_search = addslashes(trim($search['adv_search']));
 				$s_search = str_replace(' ', '', addslashes(trim($search['adv_search'])));
-				$s_where[] = " c.client_number LIKE '%{$s_search}%'";
-				$s_where[] = " c.name_kh LIKE '%{$s_search}%'";
-				$s_where[] = " c.name_en LIKE '%{$s_search}%'";
-				$s_where[] = " c.contact LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE(c.client_number,' ','') LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE(c.name_kh,' ','') LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE(c.name_en,' ','') LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE(c.contact,' ','')  LIKE '%{$s_search}%'";
 				$where .=' AND ('.implode(' OR ',$s_where).')';
 			}
 			if(!empty($search['category'])){
@@ -305,7 +305,8 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 			if(!empty($search['village'])){
 				$where.=" AND c.village_id= ".$search['village'];
 			}
-			$order=" ORDER BY c.id DESC ";
+// 			$order=" ORDER BY c.id DESC ";
+			$order=" ORDER BY c.ordering ASC ";
 			return $db->fetchAll($sql.$where.$order);
 			
 		}catch (Exception $e){
