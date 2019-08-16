@@ -279,6 +279,12 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 				$s_where[] = " REPLACE(c.name_kh,' ','') LIKE '%{$s_search}%'";
 				$s_where[] = " REPLACE(c.name_en,' ','') LIKE '%{$s_search}%'";
 				$s_where[] = " REPLACE(c.contact,' ','')  LIKE '%{$s_search}%'";
+				
+				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_service` AS d WHERE d.id= c.service_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_product` AS d WHERE d.id= c.product_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1),' ','') LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_other` AS d WHERE d.id= c.other LIMIT 1),' ','') LIKE '%{$s_search}%'";
+				
 				$where .=' AND ('.implode(' OR ',$s_where).')';
 			}
 			if(!empty($search['category'])){

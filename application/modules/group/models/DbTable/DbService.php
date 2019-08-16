@@ -62,9 +62,9 @@ class Group_Model_DbTable_DbService extends Zend_Db_Table_Abstract
 		}
 		if(!empty($search['adv_search'])){
 			$s_where = array();
-			$search = addslashes(trim($search['adv_search']));
-			$s_where[] = " title LIKE '%{$search}%'";
-			$s_where[] = " title_kh LIKE '%{$search}%'";
+			$searchlist = addslashes(trim($search['adv_search']));
+			$s_where[] = " title LIKE '%{$searchlist}%'";
+			$s_where[] = " title_kh LIKE '%{$searchlist}%'";
 			$where.=' AND ('.implode(' OR ',$s_where).')';
 		}
 		$order = " ORDER BY id DESC";
