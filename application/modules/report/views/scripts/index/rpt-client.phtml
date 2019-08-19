@@ -197,7 +197,7 @@ dojo.require("dijit.form.DateTextBox");
 		                    <td><?php echo $tr->translate("CLIENT_NUM");?></td>
 		                    <td><?php echo $tr->translate("KH_NAME");?></td>
 		                    <td><?php echo $tr->translate("EN_NAME");?></td>
-		                    <td><?php echo $tr->translate("SEX");?></td>
+		                    <td><?php echo $tr->translate("ORDERING");?></td>
 		                    
 		                    <td><?php echo $tr->translate("CATEGORY");?></td>
 		                    <td><?php echo $tr->translate("SERVICE");?></td>
@@ -232,7 +232,7 @@ dojo.require("dijit.form.DateTextBox");
 		              			<?php if (!empty($rs['map'])){?>
 		              			<a style="color: inherit; text-decoration: none;" href="<?php echo $rs['map'];?>" target="_blank" >
 		              			<?php }?>
-		              			<?php echo $rs['client_number']?>
+		              			<?php echo $rs['ordering']?>
 		              			<?php if (!empty($rs['map'])){?>
 		              			</a>
 		              			<?php }?>
