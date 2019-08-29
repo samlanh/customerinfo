@@ -285,6 +285,13 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1),' ','') LIKE '%{$s_search}%'";
 				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_other` AS d WHERE d.id= c.other LIMIT 1),' ','') LIKE '%{$s_search}%'";
 				
+// 				$s_where[] = " REPLACE((SELECT d.$province FROM `ln_province` AS d WHERE d.province_id= c.pro_id LIMIT 1),' ','')  LIKE '%{$s_search}%'";
+					$s_where[] = " REPLACE((SELECT d.$district FROM `ln_district` AS d WHERE d.dis_id= c.dis_id LIMIT 1),' ','')  LIKE '%{$s_search}%'";
+					$s_where[] = " REPLACE((SELECT e.$commune FROM `ln_commune` AS e WHERE e.com_id= c.com_id LIMIT 1),' ','')  LIKE '%{$s_search}%'";
+					$s_where[] = " REPLACE((SELECT v.$village FROM `ln_village` AS v WHERE v.vill_id= village_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
+					$s_where[] = " REPLACE((SELECT d.$column FROM `crm_zone` AS d WHERE d.id= c.zone_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
+					$s_where[] = " REPLACE((SELECT CONCAT( COALESCE(d.str_no,''),'-',COALESCE(d.str_title,'') ) FROM `crm_street` AS d WHERE d.id= c.street_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
+				
 				$where .=' AND ('.implode(' OR ',$s_where).')';
 			}
 			if(!empty($search['category'])){

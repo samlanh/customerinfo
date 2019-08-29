@@ -241,23 +241,23 @@ dojo.require("dijit.form.DateTextBox");
 		              			<td class="bold"><?php echo $rs['name_en']?></td>
 		              			<td align="center"><?php echo $rs['sex']?></td>
 		              			
-		              			<td align="center" class="nowrap"><?php echo $rs['category']?></td>
-		              			<td align="center" class="nowrap"><?php echo $rs['service']?></td>
-		              			<td align="center" class="nowrap"><?php echo $rs['product']?></td>
+		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['category']?></td>
+		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['service']?></td>
+		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;" ><?php echo $rs['product']?></td>
 		              			<td align="center" class="nowrap"><?php echo $rs['standard']?></td>
 		              			<td align="center" class="nowrap"><?php echo $rs['madeby']?></td>
 		              			
-		              			<td style=" min-width: 120px; line-height: 12px;  overflow-wrap: break-word;"><?php echo $rs['contact']?></td>
+		              			<td style=" min-width: 120px; line-height: 14px;  overflow-wrap: break-word;"><?php echo $rs['contact']?></td>
 		              			<td align="center" class="nowrap"><?php echo $rs['street']?></td>
-		              			<td class="nowrap"><?php echo $rs['zone']?></td>
-		              			<td align="center" class="nowrap"><?php echo $rs['line']?></td>
-		              			<td align="center" class="nowrap"><?php echo $rs['floor']?></td>
+		              			<td style="line-height: 12px; white-space: normal !important; max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['zone']?></td>
+		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['line']?></td>
+		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['floor']?></td>
 		              			<td class="nowrap"><?php echo $rs['village_name']?></td>
 		              			<td class="nowrap"><?php echo $rs['commnune']?></td>
 		              			<td class="nowrap"><?php echo $rs['district']?></td>
 		              			<td class="nowrap"><?php echo $rs['province']?></td>
-		              			<td class="nowrap"><?php echo $rs['side']?></td>
-		              			<td class="nowrap"><?php echo $rs['start_direction']?></td>
+		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['side']?></td>
+		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['start_direction']?></td>
 		              			
 		              			<td>
 		              			<?php if (!empty($rs['map'])){?>
@@ -279,8 +279,8 @@ dojo.require("dijit.form.DateTextBox");
 		              				</a>
 		              			<?php }}?>
 		              			</td>
-		              			<td class="nowrap"><?php echo $rs['verification']?></td>
-		              			<td class="nowrap"><?php echo $rs['other']?>
+		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['verification']?></td>
+		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['other']?>
 		              				<input dojoType="dijit.form.ValidationTextBox" required="true" id="map<?php echo $rs['id'];?>" name="map<?php echo $rs['id'];?>" value="<?php echo $rs['map'];?>" type="hidden" class="fullside">
 		              			</td>
 		              			<td align="center"><?php echo $rs['user_name']?></td>
