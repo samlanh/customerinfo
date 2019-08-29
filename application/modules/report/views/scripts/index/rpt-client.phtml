@@ -232,32 +232,32 @@ dojo.require("dijit.form.DateTextBox");
 		              			<?php if (!empty($rs['map'])){?>
 		              			<a style="color: inherit; text-decoration: none;" href="<?php echo $rs['map'];?>" target="_blank" >
 		              			<?php }?>
-		              			<?php echo $rs['ordering']?>
+		              			<?php echo $rs['client_number']?>
 		              			<?php if (!empty($rs['map'])){?>
 		              			</a>
 		              			<?php }?>
 		              			</td>
 		              			<td class="bold"><?php echo $rs['name_kh']?></td>
 		              			<td class="bold"><?php echo $rs['name_en']?></td>
-		              			<td align="center"><?php echo $rs['sex']?></td>
+		              			<td align="center"><?php echo $rs['ordering']?></td>
 		              			
-		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['category']?></td>
-		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['service']?></td>
-		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;" ><?php echo $rs['product']?></td>
+		              			<td align="left" ><span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['category']?></span></td>
+		              			<td align="left"><span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['service']?></span></td>
+		              			<td align="left" ><span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['product']?></span></td>
 		              			<td align="center" class="nowrap"><?php echo $rs['standard']?></td>
 		              			<td align="center" class="nowrap"><?php echo $rs['madeby']?></td>
 		              			
 		              			<td style=" min-width: 120px; line-height: 14px;  overflow-wrap: break-word;"><?php echo $rs['contact']?></td>
 		              			<td align="center" class="nowrap"><?php echo $rs['street']?></td>
-		              			<td style="line-height: 12px; white-space: normal !important; max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['zone']?></td>
-		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['line']?></td>
-		              			<td align="center" style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['floor']?></td>
+		              			<td align="left" > <span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['zone']?></span></td>
+		              			<td align="left" > <span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['line']?></span></td>
+		              			<td align="left" >  <span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['floor']?></span></td>
 		              			<td class="nowrap"><?php echo $rs['village_name']?></td>
 		              			<td class="nowrap"><?php echo $rs['commnune']?></td>
 		              			<td class="nowrap"><?php echo $rs['district']?></td>
 		              			<td class="nowrap"><?php echo $rs['province']?></td>
-		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['side']?></td>
-		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['start_direction']?></td>
+		              			<td><span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['side']?></span></td>
+		              			<td><span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['start_direction']?></span></td>
 		              			
 		              			<td>
 		              			<?php if (!empty($rs['map'])){?>
@@ -279,8 +279,8 @@ dojo.require("dijit.form.DateTextBox");
 		              				</a>
 		              			<?php }}?>
 		              			</td>
-		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['verification']?></td>
-		              			<td style="line-height: 14px;white-space: normal !important;max-width: 100px;width: 100px;padding: 5px;overflow-wrap: break-word;"><?php echo $rs['other']?>
+		              			<td ><span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['verification']?></span></td>
+		              			<td ><span style=" line-height: 14px; white-space: normal !important; display:block; width: 150px !important;padding: 1px;overflow-wrap: break-word;"><?php echo $rs['other']?></span>
 		              				<input dojoType="dijit.form.ValidationTextBox" required="true" id="map<?php echo $rs['id'];?>" name="map<?php echo $rs['id'];?>" value="<?php echo $rs['map'];?>" type="hidden" class="fullside">
 		              			</td>
 		              			<td align="center"><?php echo $rs['user_name']?></td>
