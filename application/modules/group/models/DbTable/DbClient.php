@@ -258,9 +258,17 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 			(SELECT d.$column FROM `crm_service` AS d WHERE d.id= c.service_id LIMIT 1) AS service,
 			(SELECT d.$column FROM `crm_product` AS d WHERE d.id= c.product_id LIMIT 1) AS product,
 			(SELECT d.$column FROM `crm_standard` AS d WHERE d.id= c.standard LIMIT 1) AS standard,
+			
+			(SELECT CONCAT( COALESCE(d.str_no,''),'-',COALESCE(d.str_title,'') ) FROM `crm_street` AS d WHERE d.id= c.street_id LIMIT 1) AS street,
+			(SELECT d.$column FROM `crm_zone` AS d WHERE d.id= c.zone_id LIMIT 1) AS zone,
+			
 			(SELECT d.$district FROM `ln_district` AS d WHERE d.dis_id= c.dis_id LIMIT 1) AS district, 
 			(SELECT e.$commune FROM `ln_commune` AS e WHERE e.com_id= c.com_id LIMIT 1) AS commnune, 
 			(SELECT v.$village FROM `ln_village` AS v WHERE v.vill_id= village_id LIMIT 1) AS village_name,
+			
+			(SELECT d.$column FROM `crm_side` AS d WHERE d.id= c.side LIMIT 1) AS side,
+			(SELECT d.$column FROM `crm_start_direction` AS d WHERE d.id= c.start_direction LIMIT 1) AS start_direction,
+			
 			c.create_date,
 			(SELECT  CONCAT(first_name) FROM rms_users WHERE id=c.user_id LIMIT 1 ) AS user_name ";
 			
@@ -318,7 +326,35 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 			if(!empty($search['village'])){
 				$where.=" AND c.village_id= ".$search['village'];
 			}
-// 			$order=" ORDER BY c.id DESC ";
+			
+			if(!empty($search['standard'])){
+				$where.=" AND c.standard= ".$search['standard'];
+			}
+			if(!empty($search['made_by'])){
+				$where.=" AND c.made_by= ".$search['made_by'];
+			}
+			if(!empty($search['street_id'])){
+				$where.=" AND c.street_id= ".$search['street_id'];
+			}
+			if(!empty($search['zone_id'])){
+				$where.=" AND c.zone_id= ".$search['zone_id'];
+			}
+			if(!empty($search['line'])){
+				$where.=" AND c.line= ".$search['line'];
+			}
+			if(!empty($search['floor'])){
+				$where.=" AND c.floor= ".$search['floor'];
+			}
+			if(!empty($search['side'])){
+				$where.=" AND c.side= ".$search['side'];
+			}
+			if(!empty($search['start_direction'])){
+				$where.=" AND c.start_direction= ".$search['start_direction'];
+			}
+			if(!empty($search['verification'])){
+				$where.=" AND c.verification= ".$search['verification'];
+			}
+			
 			$order=" ORDER BY c.ordering ASC ";
 			return $db->fetchAll($sql.$where.$order);
 			

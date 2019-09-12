@@ -28,7 +28,9 @@ class Group_indexController extends Zend_Controller_Action {
 			
 			$rs_rows= $db->getAllClients($search);
 			$list = new Application_Form_Frmtable();
-			$collumns = array("CLIENT_NUM","CATEGORY","CUSTOMER_NAME","SEX","CONTACT","SERVICE","PRODUCT","STANDARD","DISTRICT","COMMUNE","VILLAGE",
+			$collumns = array("CLIENT_NUM","CATEGORY","CUSTOMER_NAME","SEX","CONTACT","SERVICE","PRODUCT","STANDARD"
+					,"STREET","ZONE"
+					,"DISTRICT","COMMUNE","VILLAGE","SIDE","START_DIRECTION",
 					"DATE","BY_USER","STATUS");
 			$link=array(
 					'module'=>'group','controller'=>'index','action'=>'edit',);
