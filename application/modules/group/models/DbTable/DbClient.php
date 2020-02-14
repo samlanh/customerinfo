@@ -28,7 +28,7 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 		    	'category'			=>$_data['category'],
 				'name_kh'	  	=> $_data['name_kh'],
 				'name_en'	  	=> $_data['name_en'],
-				'sex'	      	=> $_data['sex'],
+				//'sex'	      	=> $_data['sex'],
 		    		
 	    		'service_id'      	=> $_data['service_id'],
 	    		'product_id'     	=> $_data['product_id'],
@@ -53,7 +53,8 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 		    	'floor'      => $_data['floor'],
 		    	'side'	=> $_data['side'],
 		    	'start_direction' => $_data['start_direction'],
-		    	'verification'      	=> $_data['verification'],
+		    	//'verification'      	=> $_data['verification'],
+		    	'verification_note'      	=> $_data['verification_note'],
 		    		'other'      	=> $_data['other'],
 		    		'ordering'      	=> $_data['ordering'],
 			); 
@@ -149,12 +150,12 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 			$stringold.="Contact : ".$row['contact']."<br />";
 	
 			
-			$sex = "M";
-			if ($_data['sex']==2){
-				$sex = "F";
-			}
+			//$sex = "M";
+			//if ($_data['sex']==2){
+				//$sex = "F";
+			//}
 			$string="Customer Name : ".$_data['name_kh']." - ".$_data['name_en']."<br />";
-			$string.="sex : ".$sex."<br />";
+			//$string.="sex : ".$sex."<br />";
 			$string.="Contact : ".$_data['contact']."<br />";
 	
 	
@@ -253,7 +254,6 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 			c.client_number,
 			(SELECT d.$column FROM `crm_category` AS d WHERE d.id= c.category LIMIT 1) AS category,
 			CONCAT( COALESCE(c.name_kh,''),'/',COALESCE(c.name_en,'') ) as name,
-			(SELECT $sexCol FROM `ln_view` WHERE TYPE =11 AND c.sex=key_code LIMIT 1) AS sex,
 			c.contact,
 			(SELECT d.$column FROM `crm_service` AS d WHERE d.id= c.service_id LIMIT 1) AS service,
 			(SELECT d.$column FROM `crm_product` AS d WHERE d.id= c.product_id LIMIT 1) AS product,
@@ -290,7 +290,8 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 				
 				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_service` AS d WHERE d.id= c.service_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
 				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_product` AS d WHERE d.id= c.product_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
-				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1),' ','') LIKE '%{$s_search}%'";
+				//$s_where[] = " REPLACE((SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1),' ','') LIKE '%{$s_search}%'";
+				$s_where[] = " REPLACE(c.verification_note,' ','') LIKE '%{$s_search}%'";
 				$s_where[] = " REPLACE((SELECT d.$column FROM `crm_other` AS d WHERE d.id= c.other LIMIT 1),' ','') LIKE '%{$s_search}%'";
 				
 // 				$s_where[] = " REPLACE((SELECT d.$province FROM `ln_province` AS d WHERE d.province_id= c.pro_id LIMIT 1),' ','')  LIKE '%{$s_search}%'";
@@ -351,9 +352,9 @@ class Group_Model_DbTable_DbClient extends Zend_Db_Table_Abstract
 			if(!empty($search['start_direction'])){
 				$where.=" AND c.start_direction= ".$search['start_direction'];
 			}
-			if(!empty($search['verification'])){
-				$where.=" AND c.verification= ".$search['verification'];
-			}
+			//if(!empty($search['verification'])){
+				//$where.=" AND c.verification= ".$search['verification'];
+			//}
 			
 			$order=" ORDER BY c.ordering ASC ";
 			return $db->fetchAll($sql.$where.$order);

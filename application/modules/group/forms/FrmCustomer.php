@@ -274,6 +274,11 @@ Class Group_Form_FrmCustomer extends Zend_Dojo_Form {
 		
 		$_id = new Zend_Form_Element_Hidden('id');
 		$_id->setAttribs(array('dojoType'=>$this->text,'required'=>'true','class'=>'fullside',));
+		
+		$_verification_note = new Zend_Dojo_Form_Element_TextBox('verification_note');
+		$_verification_note->setAttribs(array('dojoType'=>'dijit.form.TextBox','class'=>'fullside',
+				'style'=>'width:96%;min-height:50px;'));
+				
 		if(!empty($_data)){
 			$_id->setValue($_data['id']);
 			$_client_number->setValue($_data['client_number']);
@@ -302,6 +307,7 @@ Class Group_Form_FrmCustomer extends Zend_Dojo_Form {
 			$_note->setValue($_data['note']);
 			$_status->setValue($_data['status']);
 			$_id->setValue($_data['id']);
+			$_verification_note->setValue($_data['verification_note']);
 		}
 		$this->addElements(array($_btn_search,$_status_search,$_adv_search,
 				$_id,
@@ -329,7 +335,9 @@ Class Group_Form_FrmCustomer extends Zend_Dojo_Form {
 				$_map,
 				$_note,
 				$_ordering,
-				$_status));
+				$_status,
+				$_verification_note
+				));
 		return $this;
 		
 	}

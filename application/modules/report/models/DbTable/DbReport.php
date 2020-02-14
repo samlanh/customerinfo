@@ -39,7 +39,8 @@ class Report_Model_DbTable_DbReport extends Zend_Db_Table_Abstract
 			
 			(SELECT d.$column FROM `crm_side` AS d WHERE d.id= c.side LIMIT 1) AS side,
 			(SELECT d.$column FROM `crm_start_direction` AS d WHERE d.id= c.start_direction LIMIT 1) AS start_direction,
-			(SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1) AS verification,
+			
+			c.verification_note AS verification,
 			(SELECT d.$column FROM `crm_other` AS d WHERE d.id= c.other LIMIT 1) AS other,
 			
 			(SELECT d.$province FROM `ln_province` AS d WHERE d.province_id= c.pro_id LIMIT 1) AS province,
@@ -48,7 +49,7 @@ class Report_Model_DbTable_DbReport extends Zend_Db_Table_Abstract
 			(SELECT v.$village FROM `ln_village` AS v WHERE v.vill_id= village_id LIMIT 1) AS village_name,
 			(SELECT  CONCAT(first_name) FROM rms_users WHERE id=c.user_id LIMIT 1 ) AS user_name ";
 			$sql.=" FROM $this->_name AS c ";
-				
+			//(SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1) AS verification,	
 			$from_date =(empty($search['start_date']))? '1': "c.create_date >= '".$search['start_date']." 00:00:00'";
 			$to_date = (empty($search['end_date']))? '1': "c.create_date <= '".$search['end_date']." 23:59:59'";
 			$where = " WHERE c.status=1 AND ".$from_date." AND ".$to_date;
@@ -65,7 +66,8 @@ class Report_Model_DbTable_DbReport extends Zend_Db_Table_Abstract
 					
 					$s_where[] = " REPLACE((SELECT d.$column FROM `crm_service` AS d WHERE d.id= c.service_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
 					$s_where[] = " REPLACE((SELECT d.$column FROM `crm_product` AS d WHERE d.id= c.product_id LIMIT 1),' ','') LIKE '%{$s_search}%'";
-					$s_where[] = " REPLACE((SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1),' ','') LIKE '%{$s_search}%'";
+					$s_where[] = " REPLACE(c.verification_note,' ','') LIKE '%{$s_search}%'";
+					//$s_where[] = " REPLACE((SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1),' ','') LIKE '%{$s_search}%'";
 					$s_where[] = " REPLACE((SELECT d.$column FROM `crm_other` AS d WHERE d.id= c.other LIMIT 1),' ','') LIKE '%{$s_search}%'";
 					
 					$s_where[] = " REPLACE((SELECT d.$province FROM `ln_province` AS d WHERE d.province_id= c.pro_id LIMIT 1),' ','')  LIKE '%{$s_search}%'";
@@ -124,9 +126,9 @@ class Report_Model_DbTable_DbReport extends Zend_Db_Table_Abstract
 			if(!empty($search['start_direction'])){
 				$where.=" AND c.start_direction= ".$search['start_direction'];
 			}
-			if(!empty($search['verification'])){
-				$where.=" AND c.verification= ".$search['verification'];
-			}
+			//if(!empty($search['verification'])){
+				//$where.=" AND c.verification= ".$search['verification'];
+			//}
 			$order=" ORDER BY c.ordering ASC ";
 			return $db->fetchAll($sql.$where.$order);
 				
@@ -172,7 +174,8 @@ class Report_Model_DbTable_DbReport extends Zend_Db_Table_Abstract
 				
 			(SELECT d.$column FROM `crm_side` AS d WHERE d.id= c.side LIMIT 1) AS side,
 			(SELECT d.$column FROM `crm_start_direction` AS d WHERE d.id= c.start_direction LIMIT 1) AS start_direction,
-			(SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1) AS verification,
+			
+			c.verification_note AS verification,
 			(SELECT d.$column FROM `crm_other` AS d WHERE d.id= c.other LIMIT 1) AS other,
 				
 			(SELECT d.$province FROM `ln_province` AS d WHERE d.province_id= c.pro_id LIMIT 1) AS province,
@@ -181,6 +184,7 @@ class Report_Model_DbTable_DbReport extends Zend_Db_Table_Abstract
 			(SELECT v.$village FROM `ln_village` AS v WHERE v.vill_id= village_id LIMIT 1) AS village_name,
 			(SELECT  CONCAT(first_name) FROM rms_users WHERE id=c.user_id LIMIT 1 ) AS user_name ";
 			$sql.=" FROM $this->_name AS c WHERE c.status=1 AND c.id = $id ";
+			//(SELECT d.$column FROM `crm_verification` AS d WHERE d.id= c.verification LIMIT 1) AS verification,
 			return $db->fetchRow($sql);
 	
 		}catch (Exception $e){
